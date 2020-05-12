@@ -7,6 +7,10 @@
 
 # ### “poultry costs U.S. consumers 62% less in inflation-adjusted terms than it did in 1935”
 # 
+# ### “Pork, now also raised mostly at factory scale indoors, is 12% cheaper”
+# 
+# ### “Beef, which isn’t, costs 63% more. “
+# 
 # I'm going to go to FRED and get the price of Chicken, Fresh, Whole, Per Lb. (453.6 Gm) in U.S. City Average. [Here](https://fred.stlouisfed.org/series/APU0000706111#0) This way I can download the data in a nice clean format. 
 # 
 # Series ID APU0000706111
@@ -15,7 +19,7 @@
 # 
 # **Also, I can't find where he got data going all the way back to the 30s??**
 
-# In[49]:
+# In[2]:
 
 
 import pandas as pd
@@ -23,44 +27,35 @@ import matplotlib.pyplot as plt
 from datetime import date
 
 %config InlineBackend.figure_format = 'retina'
+%run ./helpers.ipynb
 
 cpi = pd.read_csv('data/CPIAUCSL.csv')
 
 # Get most recent cpi
-most_recent = cpi.loc[cpi['DATE'] == cpi['DATE'].max(), 'CPIAUCSL'].values[0]
-
-def get_adjust(past_cpi, current_cpi, past_price):
-    """
-    Return a past price adjusted for inflation
-    """
-    return (current_cpi / past_cpi) * past_price
+MOST_RECENT = cpi.loc[cpi['DATE'] == cpi['DATE'].max(), 'CPIAUCSL'].values[0]
 
 df = (
-    pd.read_csv('data/APU0000706111.csv')
-    .rename(columns={'APU0000706111':'price'})
-    .pipe(pd.merge, cpi, how='left', on='DATE')
+    beef()
+    .pipe(pd.merge, chicken(), how='outer')
+    .pipe(pd.merge, pork(), how='outer')
+    .pipe(pd.merge, cpi, how='outer', on='DATE')
+    .rename(columns={'APU0000703112':'beef',
+                     'APU0000706111':'chicken',
+                     'APU0000FD3101':'pork',
+                     'CPIAUCSL':'cpi',
+                     'DATE':'date'})
 )
-df['DATE'] = pd.to_datetime(df['DATE'])
-df['adjusted'] = df.apply(lambda x: get_adjust(past_cpi=x['CPIAUCSL'],
-                                               current_cpi=most_recent,
-                                               past_price=x['price']), axis=1)
 
-plt.title('Unadjusted');
-plt.plot(df['DATE'], df['price']);
+df['date'] = pd.to_datetime(df['date'])
+df['beef'] = pd.to_numeric(df['beef'],errors='coerce')
+df.sort_values(by=['date'], inplace=True)
 
-plt.title('Adjusted');
-plt.plot(df['DATE'], df['adjusted']);
+df['new_pork'] = apply_adjust(df, 'pork', MOST_RECENT)
+df['new_chicken'] = apply_adjust(df, 'chicken', MOST_RECENT)
+df['new_beef'] = apply_adjust(df, 'beef', MOST_RECENT)
 
-# ### “Pork, now also raised mostly at factory scale indoors, is 12% cheaper”
-
-# In[ ]:
-
-
-
-
-# ### “Beef, which isn’t, costs 63% more. “
-
-# In[ ]:
-
-
-
+plt.plot(df['date'], df['new_chicken'], label='chicken');
+plt.plot(df['date'], df['new_pork'], label='pork');
+plt.plot(df['date'], df['new_beef'], label='beef')
+plt.legend(loc="upper left");
+plt.title("Price adjusted for inflation");
