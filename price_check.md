@@ -7,7 +7,7 @@ In order to validate the claims from [this](https://www.bloomberg.com/news/artic
 - [Pork](https://fred.stlouisfed.org/series/APU0000FD3101)
 - [Beef](https://fred.stlouisfed.org/series/APU0000703112)
 
-The data from the FRED does NOT go back to 1935, I'm not 100% sure where that historic data is coming from...
+The data from the FRED does NOT go back to 1935.
 
 
 ![png](price_check_files/price_check_1_0.png)
@@ -23,17 +23,17 @@ Quotes taken directly from the article
 
     chicken
     	Oldest: 1980-01-01 00:00:00
-    	 Newest: 2020-04-01 00:00:00
+    	Newest: 2020-04-01 00:00:00
     	$2.29 --> $1.57
     	pct change: -0.315
     pork
     	Oldest: 1998-01-01 00:00:00
-    	 Newest: 2020-04-01 00:00:00
+    	Newest: 2020-04-01 00:00:00
     	$5.01 --> $3.67
     	pct change: -0.267
     beef
     	Oldest: 1984-01-01 00:00:00
-    	 Newest: 2020-04-01 00:00:00
+    	Newest: 2020-04-01 00:00:00
     	$3.23 --> $4.05
     	pct change: 0.253
 

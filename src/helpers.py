@@ -70,7 +70,7 @@ def get_diff(df, var):
     oldest = df.loc[~df[var].isna(), 'date'].min()
     newest = df.loc[~df[var].isna(), 'date'].max()
     
-    print('\tOldest: {}\n\t Newest: {}'.format(oldest, newest))
+    print('\tOldest: {}\n\tNewest: {}'.format(oldest, newest))
     old = df.loc[df.date == oldest, 'new_{}'.format(var)].values[0]
     new = df.loc[df.date == newest, 'new_{}'.format(var)].values[0]
     ch = (new - old) / old

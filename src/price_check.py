@@ -10,14 +10,20 @@
 # - [Pork](https://fred.stlouisfed.org/series/APU0000FD3101)
 # - [Beef](https://fred.stlouisfed.org/series/APU0000703112)
 # 
-# The data from the FRED does NOT go back to 1935, I'm not 100% sure where that historic data is coming from...
+# The data from the FRED does NOT go back to 1935.
 
-# In[13]:
+# In[1]:
 
 
 import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import date
+
+from pandas.plotting import register_matplotlib_converters
+register_matplotlib_converters()
+
+# https://github.com/jupyter/notebook/issues/3670
+%matplotlib inline
 
 %config InlineBackend.figure_format = 'retina'
 %run ./helpers.ipynb
@@ -63,7 +69,7 @@ plt.title("Historic Prices of Different Meats");
 # 
 # > 3. "Beef, which isn’t, costs 63% more."
 
-# In[14]:
+# In[2]:
 
 
 get_diff(df, 'chicken')
