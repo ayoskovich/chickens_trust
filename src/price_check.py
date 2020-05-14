@@ -1,13 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# ### “poultry costs U.S. consumers 62% less in inflation-adjusted terms than it did in 1935”
-# 
-# ### “Pork, now also raised mostly at factory scale indoors, is 12% cheaper”
-# 
-# ### “Beef, which isn’t, costs 63% more. “
-# 
-
 # ### Data sources
 # 
 # In order to validate the claims from [this](https://www.bloomberg.com/news/articles/2020-05-11/why-chicken-is-plentiful-during-the-pandemic-and-beef-is-not?srnd=premium&utm_medium=social&utm_source=twitter&utm_campaign=socialflow-organic&utm_content=markets&cmpid%3D=socialflow-twitter-markets&sref=XQtHDW1P) article, I pulled data from the FRED database, which pulls from the BLS. Each link will take you to the exact series that I downloaded here.
@@ -17,9 +10,9 @@
 # - [Pork](https://fred.stlouisfed.org/series/APU0000FD3101)
 # - [Beef](https://fred.stlouisfed.org/series/APU0000703112)
 # 
-# Not sure where he's getting data 
+# The data from the fred does NOT go back to 1935, I'm not 100% sure where that historic data is coming from...
 
-# In[15]:
+# In[3]:
 
 
 import pandas as pd
@@ -60,4 +53,31 @@ plt.plot(df['date'], df['new_beef'], label='Beef')
 plt.legend(loc="upper left");
 plt.xlabel("Year");
 plt.ylabel("Price ($)")
-plt.title("Price adjusted for inflation");
+plt.title("Historic Prices of Different Meats");
+
+# Quotes taken directly from the article
+# 
+# > 1. "poultry costs U.S. consumers 62% less in inflation-adjusted terms than it did in 1935"
+# 
+# > 2. "Pork, now also raised mostly at factory scale indoors, is 12% cheaper"
+# 
+# > 3. "Beef, which isn’t, costs 63% more."
+
+# In[78]:
+
+
+def get_diff(df, var):
+    oldest = df.loc[~df[var].isna(), 'date'].min()
+    newest = df.loc[~df[var].isna(), 'date'].max()
+
+    old = df.loc[df.date == oldest, 'new_{}'.format(var)].values[0]
+    new = df.loc[df.date == newest, 'new_{}'.format(var)].values[0]
+    ch = (new - old) / old
+    print(
+        '{}:\n  ${} --> ${}: {}'.format(var, round(old, 2), round(new, 2),
+                                        round(ch, 2))
+    )
+    
+get_diff(df, 'chicken')
+get_diff(df, 'pork')
+get_diff(df, 'beef')
