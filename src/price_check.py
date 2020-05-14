@@ -12,7 +12,7 @@
 # 
 # The data from the FRED does NOT go back to 1935, I'm not 100% sure where that historic data is coming from...
 
-# In[3]:
+# In[13]:
 
 
 import pandas as pd
@@ -63,7 +63,7 @@ plt.title("Historic Prices of Different Meats");
 # 
 # > 3. "Beef, which isn’t, costs 63% more."
 
-# In[4]:
+# In[14]:
 
 
 get_diff(df, 'chicken')

@@ -21,12 +21,21 @@ Quotes taken directly from the article
 
 > 3. "Beef, which isn’t, costs 63% more."
 
-    chicken:
-      $2.29 --> $1.57: -0.31
-    pork:
-      $5.01 --> $3.67: -0.27
-    beef:
-      $3.23 --> $4.05: 0.25
+    chicken
+    	Oldest: 1980-01-01 00:00:00
+    	 Newest: 2020-04-01 00:00:00
+    	$2.29 --> $1.57
+    	pct change: -0.315
+    pork
+    	Oldest: 1998-01-01 00:00:00
+    	 Newest: 2020-04-01 00:00:00
+    	$5.01 --> $3.67
+    	pct change: -0.267
+    beef
+    	Oldest: 1984-01-01 00:00:00
+    	 Newest: 2020-04-01 00:00:00
+    	$3.23 --> $4.05
+    	pct change: 0.253
 
 
 ### Limitations
