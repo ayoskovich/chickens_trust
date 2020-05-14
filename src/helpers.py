@@ -57,3 +57,22 @@ def pork():
     df = pd.read_csv('data/APU0000FD3101.csv')
     
     return df
+
+
+def get_diff(df, var):
+    """
+    Print out helpful descriptions of the oldest to newest price.
+
+    df (pd.DataFrame): Input dataframe
+    var (string): Name of variable to compute change in.
+    """
+    oldest = df.loc[~df[var].isna(), 'date'].min()
+    newest = df.loc[~df[var].isna(), 'date'].max()
+
+    old = df.loc[df.date == oldest, 'new_{}'.format(var)].values[0]
+    new = df.loc[df.date == newest, 'new_{}'.format(var)].values[0]
+    ch = (new - old) / old
+    print(
+        '{}:\n  ${} --> ${}: {}'.format(var, round(old, 2), round(new, 2),
+                                        round(ch, 2))
+    )

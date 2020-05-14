@@ -10,7 +10,7 @@
 # - [Pork](https://fred.stlouisfed.org/series/APU0000FD3101)
 # - [Beef](https://fred.stlouisfed.org/series/APU0000703112)
 # 
-# The data from the fred does NOT go back to 1935, I'm not 100% sure where that historic data is coming from...
+# The data from the FRED does NOT go back to 1935, I'm not 100% sure where that historic data is coming from...
 
 # In[3]:
 
@@ -63,21 +63,14 @@ plt.title("Historic Prices of Different Meats");
 # 
 # > 3. "Beef, which isn’t, costs 63% more."
 
-# In[78]:
+# In[4]:
 
 
-def get_diff(df, var):
-    oldest = df.loc[~df[var].isna(), 'date'].min()
-    newest = df.loc[~df[var].isna(), 'date'].max()
-
-    old = df.loc[df.date == oldest, 'new_{}'.format(var)].values[0]
-    new = df.loc[df.date == newest, 'new_{}'.format(var)].values[0]
-    ch = (new - old) / old
-    print(
-        '{}:\n  ${} --> ${}: {}'.format(var, round(old, 2), round(new, 2),
-                                        round(ch, 2))
-    )
-    
 get_diff(df, 'chicken')
 get_diff(df, 'pork')
 get_diff(df, 'beef')
+
+# ### Limitations
+# 
+# - Maybe I deflated prices using a different CPI than the author
+# - My numbers certainly aren't in the same date range?

@@ -7,7 +7,7 @@ In order to validate the claims from [this](https://www.bloomberg.com/news/artic
 - [Pork](https://fred.stlouisfed.org/series/APU0000FD3101)
 - [Beef](https://fred.stlouisfed.org/series/APU0000703112)
 
-The data from the fred does NOT go back to 1935, I'm not 100% sure where that historic data is coming from...
+The data from the FRED does NOT go back to 1935, I'm not 100% sure where that historic data is coming from...
 
 
 ![png](price_check_files/price_check_1_0.png)
@@ -28,3 +28,8 @@ Quotes taken directly from the article
     beef:
       $3.23 --> $4.05: 0.25
 
+
+### Limitations
+
+- Maybe I deflated prices using a different CPI than the author
+- My numbers certainly aren't in the same date range?
