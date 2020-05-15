@@ -1,4 +1,4 @@
-### Data sources
+## Data sources
 
 In order to validate the claims from [this](https://www.bloomberg.com/news/articles/2020-05-11/why-chicken-is-plentiful-during-the-pandemic-and-beef-is-not?srnd=premium&utm_medium=social&utm_source=twitter&utm_campaign=socialflow-organic&utm_content=markets&cmpid%3D=socialflow-twitter-markets&sref=XQtHDW1P) article, I pulled price data from FRED (which sources data from the BLS) and adjusted it using the CPI. Data sources are here:
 
@@ -32,18 +32,26 @@ Now I'll simply take the percentage difference between the oldest and most recen
     	pct change: 0.253
 
 
-Quotes taken directly from the article
+## Claims
 
-> 1. "poultry costs U.S. consumers 62% less in inflation-adjusted terms than it did in 1935"
-    - From 1980 - 2020, chicken prices have declined 31.5%.
+> "poultry costs U.S. consumers 62% less in inflation-adjusted terms than it did in 1935"
 
-> 2. "Pork, now also raised mostly at factory scale indoors, is 12% cheaper"
-    - From 1998 - 2020, the price of pork has declined 26%.
+> "Pork, now also raised mostly at factory scale indoors, is 12% cheaper"
 
-> 3. "Beef, which isn’t, costs 63% more."
-    - From 1984 - 2020, the price of beef has increased 25.3%.
+> "Beef, which isn’t, costs 63% more."
 
-### Limitations
+Here's what I found:
+
+- From 1980 - 2020, chicken prices have declined 31.5%.
+- From 1998 - 2020, the price of pork has declined 26%.
+- From 1984 - 2020, the price of beef has increased 25.3%.
+
+## Market Reactions
+
+- Where do we define "coronavirus is here"
+- Look at pct change in price for all 3 items
+
+## Final Notes
 
 - Maybe I deflated prices using a different CPI than the author
 - My numbers certainly aren't in the same date range?
