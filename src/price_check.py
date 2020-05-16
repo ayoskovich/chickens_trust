@@ -14,10 +14,11 @@
 # 
 # The following graphic shows to historic prices (adjusted for inflation) of the 3 types of meats described.
 
-# In[1]:
+# In[10]:
 
 
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 from datetime import date
 
@@ -99,6 +100,25 @@ diff['diff'] = diff['mine'] - diff['his']
 # |  0 | chicken | -0.314954 | -0.62 |  0.305046 |
 # |  1 | pork    | -0.266726 | -0.12 | -0.146726 |
 # |  2 | beef    |  0.253233 |  0.63 | -0.376767 |
+
+# But let's take a break really quick here, because there is a glaring problem. The date ranges of the data I used are different than the date ranges that he used, because his data goes back to 1935. Let's add to our table the number of years that the change occurred over.
+
+# In[15]:
+
+
+off = pd.DataFrame({
+    'type':TYPES,
+    'my num':[2020 - 1980, 2020 - 1998, 2020 - 1984],
+    'his num':np.repeat(2020 - 1935, 3)
+})
+off['diff'] = off['my num'] - off['his num']
+#print(off.to_markdown())
+
+# |    | type    |   my num |   his num |   diff |
+# |---:|:--------|---------:|----------:|-------:|
+# |  0 | chicken |       40 |        85 |    -45 |
+# |  1 | pork    |       22 |        85 |    -63 |
+# |  2 | beef    |       36 |        85 |    -49 |
 
 # ## Market Reactions
 # 

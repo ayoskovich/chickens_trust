@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[2]:
 
 
 # Importing one notebook into another isn't the best way to do this,
@@ -67,6 +67,8 @@ def get_diff(df, var, ret=False):
     df (pd.DataFrame): Input dataframe
     var (string): Name of variable to compute change in.
     ret (bool): If true, return the pct change
+                If false, prints out some nice stats and returns
+                    nothing.
     """
     
     oldest = df.loc[~df[var].isna(), 'date'].min()

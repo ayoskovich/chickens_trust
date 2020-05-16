@@ -37,6 +37,14 @@ Here's what I found:
 |  1 | pork    | -0.266726 | -0.12 | -0.146726 |
 |  2 | beef    |  0.253233 |  0.63 | -0.376767 |
 
+But let's take a break really quick here, because there is a glaring problem. The date ranges of the data I used are different than the date ranges that he used, because his data goes back to 1935. Let's add to our table the number of years that the change occurred over.
+
+|    | type    |   my num |   his num |   diff |
+|---:|:--------|---------:|----------:|-------:|
+|  0 | chicken |       40 |        85 |    -45 |
+|  1 | pork    |       22 |        85 |    -63 |
+|  2 | beef    |       36 |        85 |    -49 |
+
 ## Market Reactions
 
 - Where do we define "coronavirus is here"
