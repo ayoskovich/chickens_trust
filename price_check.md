@@ -7,7 +7,7 @@ In order to validate the claims from [this](https://www.bloomberg.com/news/artic
 - [Pork](https://fred.stlouisfed.org/series/APU0000FD3101)
 - [Beef](https://fred.stlouisfed.org/series/APU0000703112)
 
-**A note here**: I couldn't for the life of me, find any data that goes back to 1935, like Fox cites in the article. The earliest history I could find from FRED or the BLS only goes back to the 80s, so I must be missing something!
+**A note here**: I couldn't for the life of me, find any data that goes back to 1935, like Fox cites in the article. The earliest history I could find from FRED or the BLS only goes back to the 80s.
 
 The following graphic shows to historic prices (adjusted for inflation) of the 3 types of meats described.
 
@@ -31,26 +31,12 @@ Here's what I found:
 - From 1998 - 2020, the price of pork has declined 26%.
 - From 1984 - 2020, the price of beef has increased 25.3%.
 
-|    | type    |      mine |   his |      diff |
-|---:|:--------|----------:|------:|----------:|
-|  0 | chicken | -0.314954 | -0.62 |  0.305046 |
-|  1 | pork    | -0.266726 | -0.12 | -0.146726 |
-|  2 | beef    |  0.253233 |  0.63 | -0.376767 |
-
-But let's take a break really quick here, because there is a glaring problem. The date ranges of the data I used are different than the date ranges that he used, because his data goes back to 1935. Let's add to our table the number of years that the change occurred over.
-
-|    | type    |   my num |   his num |   diff |
-|---:|:--------|---------:|----------:|-------:|
-|  0 | chicken |       40 |        85 |    -45 |
-|  1 | pork    |       22 |        85 |    -63 |
-|  2 | beef    |       36 |        85 |    -49 |
-
-## Market Reactions
-
-- Where do we define "coronavirus is here"
-- Look at pct change in price for all 3 items
+|    | type    |   m_change |   m_year |   h_change |   h_year |   m_adjusted |      error |
+|---:|:--------|-----------:|---------:|-----------:|---------:|-------------:|-----------:|
+|  0 | chicken |  -0.314954 |       40 |      -0.62 |       85 |    -0.669277 | -0.0492766 |
+|  1 | pork    |  -0.266726 |       22 |      -0.12 |       85 |    -1.03053  | -0.910534  |
+|  2 | beef    |   0.253233 |       36 |       0.63 |       85 |     0.597911 | -0.032089  |
 
 ## Final Notes
 
 - Maybe I deflated prices using a different CPI than the author
-- My numbers certainly aren't in the same date range?
