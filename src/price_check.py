@@ -14,7 +14,7 @@
 # 
 # The following graphic shows to historic prices (adjusted for inflation) of the 3 types of meats described.
 
-# In[1]:
+# In[3]:
 
 
 import pandas as pd
@@ -62,7 +62,7 @@ plt.plot(df['date'], df['new_chicken'], label='Chicken');
 
 plt.legend(loc="upper left");
 plt.xlabel("Year");
-plt.ylabel("Price ($)")
+plt.ylabel("Price per pound ($)")
 plt.title("Historic Prices of Different Meats");
 
 # In order to summarize the price change since the historic price, I'll simply take the percentage difference between the oldest and most recent price.
@@ -112,6 +112,33 @@ diff = (diff
 # |  1 | pork    |  -0.266726 |       22 |      -0.12 |       85 |    -1.03053  | -0.910534  |
 # |  2 | beef    |   0.253233 |       36 |       0.63 |       85 |     0.597911 | -0.032089  |
 
+# In[15]:
+
+
+#print(pd.DataFrame({
+#    'column':diff.columns,
+#    'description':[
+#        'Type of meat',
+#        'pct change I got',
+#        'Number of years in my data',
+#        'pct change Fox got',
+#        'Number of years in Fox\'s data',
+#        'Scaled version of my data (linear extrapolation)',
+#        'Difference between the extrapolated and Fox\'s numbers'
+#    ]
+#}).to_markdown())
+
+# |    | column     | description                                           |
+# |---:|:-----------|:------------------------------------------------------|
+# |  0 | type       | Type of meat                                          |
+# |  1 | m_change   | pct change I got                                      |
+# |  2 | m_year     | Number of years in my data                            |
+# |  3 | h_change   | pct change Fox got                                    |
+# |  4 | h_year     | Number of years in Fox's data                         |
+# |  5 | m_adjusted | Scaled version of my data (linear extrapolation)      |
+# |  6 | error      | Difference between the extrapolated and Fox's numbers |
+
 # ## Final Notes
 # 
+# - 2 / 3 statistics were pretty close, something weird happens with pork tho, 90% error
 # - Maybe I deflated prices using a different CPI than the author
