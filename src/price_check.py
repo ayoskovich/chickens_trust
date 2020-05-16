@@ -80,7 +80,7 @@ plt.title("Historic Prices of Different Meats");
 # - From 1998 - 2020, the price of pork has declined 26%.
 # - From 1984 - 2020, the price of beef has increased 25.3%.
 
-# In[21]:
+# In[23]:
 
 
 # Comparing claims
@@ -92,7 +92,11 @@ diff = pd.DataFrame({
     'his' :[-.62, -.12, .63]
 })
 diff['diff'] = diff['mine'] - diff['his']
-diff
+
+# In[24]:
+
+
+display(diff)
 
 # ## Market Reactions
 # 

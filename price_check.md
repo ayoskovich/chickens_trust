@@ -32,8 +32,6 @@ Here's what I found:
 - From 1984 - 2020, the price of beef has increased 25.3%.
 
 
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -83,7 +81,6 @@ Here's what I found:
   </tbody>
 </table>
 </div>
-
 
 
 ## Market Reactions
