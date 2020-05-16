@@ -11,8 +11,10 @@
 # - [Beef](https://fred.stlouisfed.org/series/APU0000703112)
 # 
 # **A note here**: I couldn't for the life of me, find any data that goes back to 1935, like Fox cites in the article. The earliest history I could find from FRED or the BLS only goes back to the 80s, so I must be missing something!
+# 
+# The following graphic shows to historic prices (adjusted for inflation) of the 3 types of meats described.
 
-# In[4]:
+# In[1]:
 
 
 import pandas as pd
@@ -62,14 +64,7 @@ plt.xlabel("Year");
 plt.ylabel("Price ($)")
 plt.title("Historic Prices of Different Meats");
 
-# Now I'll simply take the percentage difference between the oldest and most recent price.
-
-# In[2]:
-
-
-get_diff(df, 'chicken')
-get_diff(df, 'pork')
-get_diff(df, 'beef')
+# In order to summarize the price change since the historic price, I'll simply take the percentage difference between the oldest and most recent price.
 
 # ## Claims
 # 
@@ -84,6 +79,20 @@ get_diff(df, 'beef')
 # - From 1980 - 2020, chicken prices have declined 31.5%.
 # - From 1998 - 2020, the price of pork has declined 26%.
 # - From 1984 - 2020, the price of beef has increased 25.3%.
+
+# In[21]:
+
+
+# Comparing claims
+TYPES = ['chicken', 'pork', 'beef']
+
+diff = pd.DataFrame({
+    'type':TYPES,
+    'mine':[get_diff(df, x, True) for x in TYPES],
+    'his' :[-.62, -.12, .63]
+})
+diff['diff'] = diff['mine'] - diff['his']
+diff
 
 # ## Market Reactions
 # 

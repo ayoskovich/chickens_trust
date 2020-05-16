@@ -59,20 +59,27 @@ def pork():
     return df
 
 
-def get_diff(df, var):
+def get_diff(df, var, ret=False):
     """
-    Print out helpful descriptions of the oldest to newest price.
+    Calculate pct change in price from oldest date the newest
+    date.
 
     df (pd.DataFrame): Input dataframe
     var (string): Name of variable to compute change in.
+    ret (bool): If true, return the pct change
     """
-    print(var)
+    
     oldest = df.loc[~df[var].isna(), 'date'].min()
     newest = df.loc[~df[var].isna(), 'date'].max()
     
-    print('\tOldest: {}\n\tNewest: {}'.format(oldest, newest))
+    
     old = df.loc[df.date == oldest, 'new_{}'.format(var)].values[0]
     new = df.loc[df.date == newest, 'new_{}'.format(var)].values[0]
     ch = (new - old) / old
-    print('\t${} --> ${}'.format(round(old, 2), round(new, 2)))
-    print('\tpct change: {}'.format(round(ch, 3)))
+    
+    if ret: return ch
+    else:
+        print(var)
+        print('\tOldest: {}\n\tNewest: {}'.format(oldest, newest))
+        print('\t${} --> ${}'.format(round(old, 2), round(new, 2)))
+        print('\tpct change: {}'.format(round(ch, 3)))
