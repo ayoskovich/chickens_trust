@@ -31,57 +31,11 @@ Here's what I found:
 - From 1998 - 2020, the price of pork has declined 26%.
 - From 1984 - 2020, the price of beef has increased 25.3%.
 
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>type</th>
-      <th>mine</th>
-      <th>his</th>
-      <th>diff</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>chicken</td>
-      <td>-0.314954</td>
-      <td>-0.62</td>
-      <td>0.305046</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>pork</td>
-      <td>-0.266726</td>
-      <td>-0.12</td>
-      <td>-0.146726</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>beef</td>
-      <td>0.253233</td>
-      <td>0.63</td>
-      <td>-0.376767</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+|    | type    |      mine |   his |      diff |
+|---:|:--------|----------:|------:|----------:|
+|  0 | chicken | -0.314954 | -0.62 |  0.305046 |
+|  1 | pork    | -0.266726 | -0.12 | -0.146726 |
+|  2 | beef    |  0.253233 |  0.63 | -0.376767 |
 
 ## Market Reactions
 
