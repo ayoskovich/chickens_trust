@@ -10,11 +10,11 @@
 # - [Pork](https://fred.stlouisfed.org/series/APU0000FD3101)
 # - [Beef](https://fred.stlouisfed.org/series/APU0000703112)
 # 
-# **A note here**: I couldn't for the life of me, find any data that goes back to 1935, like Fox cites in the article. The earliest history I could find from FRED or the BLS only goes back to the 80s.
+# **A note here**: I couldn't quickly find any data that goes back to 1935, like Fox cites in the article. The earliest history I could find from FRED or the BLS only goes back to the 80s.
 # 
 # The following graphic shows to historic prices (adjusted for inflation) of the 3 types of meats described.
 
-# In[3]:
+# In[1]:
 
 
 import pandas as pd
@@ -104,15 +104,15 @@ diff = (diff
     .assign(m_adjusted = lambda x: (x['m_change'] / x['m_year'])*x['h_year'])
     .assign(error = lambda x: x['m_adjusted'] - x['h_change'])
 )
-#print(diff.to_markdown())
+#print(diff.round(2).to_markdown())
 
-# |    | type    |   m_change |   m_year |   h_change |   h_year |   m_adjusted |      error |
-# |---:|:--------|-----------:|---------:|-----------:|---------:|-------------:|-----------:|
-# |  0 | chicken |  -0.314954 |       40 |      -0.62 |       85 |    -0.669277 | -0.0492766 |
-# |  1 | pork    |  -0.266726 |       22 |      -0.12 |       85 |    -1.03053  | -0.910534  |
-# |  2 | beef    |   0.253233 |       36 |       0.63 |       85 |     0.597911 | -0.032089  |
+# |    | type    |   m_change |   m_year |   h_change |   h_year |   m_adjusted |   error |
+# |---:|:--------|-----------:|---------:|-----------:|---------:|-------------:|--------:|
+# |  0 | chicken |      -0.31 |       40 |      -0.62 |       85 |        -0.67 |   -0.05 |
+# |  1 | pork    |      -0.27 |       22 |      -0.12 |       85 |        -1.03 |   -0.91 |
+# |  2 | beef    |       0.25 |       36 |       0.63 |       85 |         0.6  |   -0.03 |
 
-# In[15]:
+# In[3]:
 
 
 #print(pd.DataFrame({
