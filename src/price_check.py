@@ -21,6 +21,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import date
+from IPython.core.display import HTML
 
 from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
@@ -104,7 +105,7 @@ diff = (diff
     .assign(m_adjusted = lambda x: (x['m_change'] / x['m_year'])*x['h_year'])
     .assign(error = lambda x: x['m_adjusted'] - x['h_change'])
 )
-#print(diff.round(2).to_markdown())
+HTML(diff.round(2).to_html())
 
 # |    | type    |   m_change |   m_year |   h_change |   h_year |   m_adjusted |   error |
 # |---:|:--------|-----------:|---------:|-----------:|---------:|-------------:|--------:|

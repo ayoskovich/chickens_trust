@@ -31,6 +31,58 @@ Here's what I found:
 - From 1998 - 2020, the price of pork has declined 26%.
 - From 1984 - 2020, the price of beef has increased 25.3%.
 
+
+
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+      <th>m_change</th>
+      <th>m_year</th>
+      <th>h_change</th>
+      <th>h_year</th>
+      <th>m_adjusted</th>
+      <th>error</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>chicken</td>
+      <td>-0.31</td>
+      <td>40</td>
+      <td>-0.62</td>
+      <td>85</td>
+      <td>-0.67</td>
+      <td>-0.05</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>pork</td>
+      <td>-0.27</td>
+      <td>22</td>
+      <td>-0.12</td>
+      <td>85</td>
+      <td>-1.03</td>
+      <td>-0.91</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>beef</td>
+      <td>0.25</td>
+      <td>36</td>
+      <td>0.63</td>
+      <td>85</td>
+      <td>0.60</td>
+      <td>-0.03</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
 |    | type    |   m_change |   m_year |   h_change |   h_year |   m_adjusted |   error |
 |---:|:--------|-----------:|---------:|-----------:|---------:|-------------:|--------:|
 |  0 | chicken |      -0.31 |       40 |      -0.62 |       85 |        -0.67 |   -0.05 |
