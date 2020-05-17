@@ -82,7 +82,7 @@ plt.title("Historic Prices of Different Meats");
 # - From 1998 - 2020, the price of pork has declined 26%.
 # - From 1984 - 2020, the price of beef has increased 25.3%.
 
-# In[2]:
+# In[4]:
 
 
 TYPES = ['chicken', 'pork', 'beef']
@@ -105,7 +105,7 @@ diff = (diff
     .assign(m_adjusted = lambda x: (x['m_change'] / x['m_year'])*x['h_year'])
     .assign(error = lambda x: x['m_adjusted'] - x['h_change'])
 )
-HTML(diff.round(2).to_html())
+HTML(diff.round(2).to_html().replace('border="1"','border="0"'))
 
 # |    | type    |   m_change |   m_year |   h_change |   h_year |   m_adjusted |   error |
 # |---:|:--------|-----------:|---------:|-----------:|---------:|-------------:|--------:|
