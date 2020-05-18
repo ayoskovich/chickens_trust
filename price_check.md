@@ -2,20 +2,107 @@
 
 In order to validate the claims from [this](https://www.bloomberg.com/news/articles/2020-05-11/why-chicken-is-plentiful-during-the-pandemic-and-beef-is-not?srnd=premium&utm_medium=social&utm_source=twitter&utm_campaign=socialflow-organic&utm_content=markets&cmpid%3D=socialflow-twitter-markets&sref=XQtHDW1P) article, I pulled price data from FRED (which sources data from the BLS) and adjusted it using the CPI. Data sources are here:
 
+- [Data finder](https://beta.bls.gov/dataQuery/find?st=0&r=20&s=popularity%3AD&more=0)
 - [CPI (for inflation)](https://fred.stlouisfed.org/series/CPIAUCSL)
 - [Poultry](https://fred.stlouisfed.org/series/APU0000706111)
 - [Pork](https://fred.stlouisfed.org/series/APU0000FD3101)
 - [Beef](https://fred.stlouisfed.org/series/APU0000703112)
 
-**A note here**: I couldn't quickly find any data that goes back to 1935, like Fox cites in the article. The earliest history I could find from FRED or the BLS only goes back to the 80s.
-
-The following graphic shows to historic prices (adjusted for inflation) of the 3 types of meats described.
 
 
-![png](price_check_files/price_check_1_0.png)
+
+    -0.6186046511627907
 
 
-In order to summarize the price change since the historic price, I'll simply take the percentage difference between the oldest and most recent price.
+
+
+![png](price_check_files/price_check_2_0.png)
+
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Series ID</th>
+      <th>Year</th>
+      <th>Period</th>
+      <th>Label</th>
+      <th>Value</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CUUR0000SEFF</td>
+      <td>1935</td>
+      <td>M01</td>
+      <td>1935 Jan</td>
+      <td>32.4</td>
+      <td>1935-01-01</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>CUUR0000SEFD</td>
+      <td>1935</td>
+      <td>M01</td>
+      <td>1935 Jan</td>
+      <td>13.0</td>
+      <td>1935-01-01</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>CUUR0000SEFC</td>
+      <td>1935</td>
+      <td>M01</td>
+      <td>1935 Jan</td>
+      <td>10.2</td>
+      <td>1935-01-01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>CUUR0000SEFF</td>
+      <td>1935</td>
+      <td>M02</td>
+      <td>1935 Feb</td>
+      <td>34.5</td>
+      <td>1935-02-01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>CUUR0000SEFD</td>
+      <td>1935</td>
+      <td>M02</td>
+      <td>1935 Feb</td>
+      <td>13.3</td>
+      <td>1935-02-01</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+![png](price_check_files/price_check_4_0.png)
+
 
 ## Claims
 

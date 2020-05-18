@@ -5,14 +5,16 @@
 # 
 # In order to validate the claims from [this](https://www.bloomberg.com/news/articles/2020-05-11/why-chicken-is-plentiful-during-the-pandemic-and-beef-is-not?srnd=premium&utm_medium=social&utm_source=twitter&utm_campaign=socialflow-organic&utm_content=markets&cmpid%3D=socialflow-twitter-markets&sref=XQtHDW1P) article, I pulled price data from FRED (which sources data from the BLS) and adjusted it using the CPI. Data sources are here:
 # 
+# - [Data finder](https://beta.bls.gov/dataQuery/find?st=0&r=20&s=popularity%3AD&more=0)
 # - [CPI (for inflation)](https://fred.stlouisfed.org/series/CPIAUCSL)
 # - [Poultry](https://fred.stlouisfed.org/series/APU0000706111)
 # - [Pork](https://fred.stlouisfed.org/series/APU0000FD3101)
 # - [Beef](https://fred.stlouisfed.org/series/APU0000703112)
-# 
-# **A note here**: I couldn't quickly find any data that goes back to 1935, like Fox cites in the article. The earliest history I could find from FRED or the BLS only goes back to the 80s.
-# 
-# The following graphic shows to historic prices (adjusted for inflation) of the 3 types of meats described.
+
+# In[11]:
+
+
+(1.64 - 4.30) / 4.30
 
 # In[1]:
 
@@ -66,7 +68,23 @@ plt.xlabel("Year");
 plt.ylabel("Price per pound ($)")
 plt.title("Historic Prices of Different Meats");
 
-# In order to summarize the price change since the historic price, I'll simply take the percentage difference between the oldest and most recent price.
+# In[48]:
+
+
+import seaborn as sns
+FILES = ['data/file-2.csv', 'data/file-3.csv', 'data/file-4.csv']
+stacked = pd.concat(
+    [pd.read_csv(x) for x in FILES]
+)
+
+stacked['Date'] = pd.to_datetime(stacked['Label'])
+stacked.sort_values(by=['Date'], inplace=True)
+stacked.head()
+
+# In[51]:
+
+
+sns.lineplot(x='Date', y='Value', hue='Series ID', data=stacked);
 
 # ## Claims
 # 
