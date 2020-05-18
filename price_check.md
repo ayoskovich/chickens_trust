@@ -38,13 +38,12 @@ Here's what I found:
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>type</th>
-      <th>m_change</th>
-      <th>m_year</th>
-      <th>h_change</th>
-      <th>h_year</th>
-      <th>m_adjusted</th>
-      <th>error</th>
+      <th>Type</th>
+      <th>My pct change</th>
+      <th>His pct change</th>
+      <th>My Years</th>
+      <th>His years</th>
+      <th>Extrapolated</th>
     </tr>
   </thead>
   <tbody>
@@ -52,36 +51,35 @@ Here's what I found:
       <th>0</th>
       <td>chicken</td>
       <td>-0.31</td>
-      <td>40</td>
       <td>-0.62</td>
+      <td>40</td>
       <td>85</td>
       <td>-0.67</td>
-      <td>-0.05</td>
     </tr>
     <tr>
       <th>1</th>
       <td>pork</td>
       <td>-0.27</td>
-      <td>22</td>
       <td>-0.12</td>
+      <td>22</td>
       <td>85</td>
       <td>-1.03</td>
-      <td>-0.91</td>
     </tr>
     <tr>
       <th>2</th>
       <td>beef</td>
       <td>0.25</td>
-      <td>36</td>
       <td>0.63</td>
+      <td>36</td>
       <td>85</td>
       <td>0.60</td>
-      <td>-0.03</td>
     </tr>
   </tbody>
 </table>
 
 
+
+Now I can look at how far off I was.
 
 
 
@@ -90,45 +88,25 @@ Here's what I found:
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>column</th>
-      <th>description</th>
+      <th>Type</th>
+      <th>error</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>type</td>
-      <td>Type of meat</td>
+      <td>chicken</td>
+      <td>-0.05</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>m_change</td>
-      <td>pct change I got</td>
+      <td>pork</td>
+      <td>-0.91</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>m_year</td>
-      <td>Number of years in my data</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>h_change</td>
-      <td>pct change Fox got</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>h_year</td>
-      <td>Number of years in Fox's data</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>m_adjusted</td>
-      <td>Scaled version of my data (linear extrapolation)</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>error</td>
-      <td>Difference between the extrapolated and Fox's numbers</td>
+      <td>beef</td>
+      <td>-0.03</td>
     </tr>
   </tbody>
 </table>

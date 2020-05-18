@@ -82,7 +82,7 @@ plt.title("Historic Prices of Different Meats");
 # - From 1998 - 2020, the price of pork has declined 26%.
 # - From 1984 - 2020, the price of beef has increased 25.3%.
 
-# In[2]:
+# In[20]:
 
 
 TYPES = ['chicken', 'pork', 'beef']
@@ -92,11 +92,11 @@ diff = pd.DataFrame({
     
     # My pct differences
     'm_change':[get_diff(df, x, True) for x in TYPES],
-    # Add my years
-    'm_year':[2020 - 1980, 2020 - 1998, 2020 - 1984],
-    
     # Fox's changes
     'h_change' :[-.62, -.12, .63],
+    
+    # Add my years
+    'm_year':[2020 - 1980, 2020 - 1998, 2020 - 1984],
     # Fox's year range
     'h_year': np.repeat(2020 - 1935, 3)
 })
@@ -104,24 +104,23 @@ diff = pd.DataFrame({
 diff = (diff
     .assign(m_adjusted = lambda x: (x['m_change'] / x['m_year'])*x['h_year'])
     .assign(error = lambda x: x['m_adjusted'] - x['h_change'])
+    .rename(columns={
+        'type':'Type',
+        'm_change':'My pct change',
+        'm_year':'My Years',
+        'h_change':'His pct change',
+        'h_year':'His years',
+        'm_adjusted':'Extrapolated',
+    })
 )
-HTML(diff.round(2).to_html().replace('border="1"','border="0"'))
+HTML(diff.drop(labels=['error'], axis=1).round(2).to_html().replace('border="1"','border="0"'))
 
-# In[3]:
+# Now I can look at how far off I was.
+
+# In[21]:
 
 
-HTML(pd.DataFrame({
-    'column':diff.columns,
-    'description':[
-        'Type of meat',
-        'pct change I got',
-        'Number of years in my data',
-        'pct change Fox got',
-        'Number of years in Fox\'s data',
-        'Scaled version of my data (linear extrapolation)',
-        'Difference between the extrapolated and Fox\'s numbers'
-    ]
-}).to_html().replace('border="1"','border="0"'))
+HTML(diff[['Type', 'error']].round(2).to_html().replace('border="1"','border="0"'))
 
 # ## Final Notes
 # 
