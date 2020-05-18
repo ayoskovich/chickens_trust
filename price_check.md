@@ -83,21 +83,57 @@ Here's what I found:
 
 
 
-|    | type    |   m_change |   m_year |   h_change |   h_year |   m_adjusted |   error |
-|---:|:--------|-----------:|---------:|-----------:|---------:|-------------:|--------:|
-|  0 | chicken |      -0.31 |       40 |      -0.62 |       85 |        -0.67 |   -0.05 |
-|  1 | pork    |      -0.27 |       22 |      -0.12 |       85 |        -1.03 |   -0.91 |
-|  2 | beef    |       0.25 |       36 |       0.63 |       85 |         0.6  |   -0.03 |
 
-|    | column     | description                                           |
-|---:|:-----------|:------------------------------------------------------|
-|  0 | type       | Type of meat                                          |
-|  1 | m_change   | pct change I got                                      |
-|  2 | m_year     | Number of years in my data                            |
-|  3 | h_change   | pct change Fox got                                    |
-|  4 | h_year     | Number of years in Fox's data                         |
-|  5 | m_adjusted | Scaled version of my data (linear extrapolation)      |
-|  6 | error      | Difference between the extrapolated and Fox's numbers |
+
+
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>column</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>type</td>
+      <td>Type of meat</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>m_change</td>
+      <td>pct change I got</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>m_year</td>
+      <td>Number of years in my data</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>h_change</td>
+      <td>pct change Fox got</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>h_year</td>
+      <td>Number of years in Fox's data</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>m_adjusted</td>
+      <td>Scaled version of my data (linear extrapolation)</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>error</td>
+      <td>Difference between the extrapolated and Fox's numbers</td>
+    </tr>
+  </tbody>
+</table>
+
+
 
 ## Final Notes
 

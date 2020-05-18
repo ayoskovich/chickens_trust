@@ -82,7 +82,7 @@ plt.title("Historic Prices of Different Meats");
 # - From 1998 - 2020, the price of pork has declined 26%.
 # - From 1984 - 2020, the price of beef has increased 25.3%.
 
-# In[4]:
+# In[2]:
 
 
 TYPES = ['chicken', 'pork', 'beef']
@@ -107,37 +107,21 @@ diff = (diff
 )
 HTML(diff.round(2).to_html().replace('border="1"','border="0"'))
 
-# |    | type    |   m_change |   m_year |   h_change |   h_year |   m_adjusted |   error |
-# |---:|:--------|-----------:|---------:|-----------:|---------:|-------------:|--------:|
-# |  0 | chicken |      -0.31 |       40 |      -0.62 |       85 |        -0.67 |   -0.05 |
-# |  1 | pork    |      -0.27 |       22 |      -0.12 |       85 |        -1.03 |   -0.91 |
-# |  2 | beef    |       0.25 |       36 |       0.63 |       85 |         0.6  |   -0.03 |
-
 # In[3]:
 
 
-#print(pd.DataFrame({
-#    'column':diff.columns,
-#    'description':[
-#        'Type of meat',
-#        'pct change I got',
-#        'Number of years in my data',
-#        'pct change Fox got',
-#        'Number of years in Fox\'s data',
-#        'Scaled version of my data (linear extrapolation)',
-#        'Difference between the extrapolated and Fox\'s numbers'
-#    ]
-#}).to_markdown())
-
-# |    | column     | description                                           |
-# |---:|:-----------|:------------------------------------------------------|
-# |  0 | type       | Type of meat                                          |
-# |  1 | m_change   | pct change I got                                      |
-# |  2 | m_year     | Number of years in my data                            |
-# |  3 | h_change   | pct change Fox got                                    |
-# |  4 | h_year     | Number of years in Fox's data                         |
-# |  5 | m_adjusted | Scaled version of my data (linear extrapolation)      |
-# |  6 | error      | Difference between the extrapolated and Fox's numbers |
+HTML(pd.DataFrame({
+    'column':diff.columns,
+    'description':[
+        'Type of meat',
+        'pct change I got',
+        'Number of years in my data',
+        'pct change Fox got',
+        'Number of years in Fox\'s data',
+        'Scaled version of my data (linear extrapolation)',
+        'Difference between the extrapolated and Fox\'s numbers'
+    ]
+}).to_html().replace('border="1"','border="0"'))
 
 # ## Final Notes
 # 
