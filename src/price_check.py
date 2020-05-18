@@ -81,8 +81,10 @@ plt.title("Historic Prices of Different Meats");
 # - From 1980 - 2020, chicken prices have declined 31.5%.
 # - From 1998 - 2020, the price of pork has declined 26%.
 # - From 1984 - 2020, the price of beef has increased 25.3%.
+# 
+# But it wouldn't be fair to compare these numbers to his numbers, because my data has a different number of years. I'll very simply extrapolate backwards using the growth rate I have from my data.
 
-# In[20]:
+# In[22]:
 
 
 TYPES = ['chicken', 'pork', 'beef']
@@ -102,6 +104,7 @@ diff = pd.DataFrame({
 })
 
 diff = (diff
+    # Extrapolation here
     .assign(m_adjusted = lambda x: (x['m_change'] / x['m_year'])*x['h_year'])
     .assign(error = lambda x: x['m_adjusted'] - x['h_change'])
     .rename(columns={
@@ -110,19 +113,18 @@ diff = (diff
         'm_year':'My Years',
         'h_change':'His pct change',
         'h_year':'His years',
-        'm_adjusted':'Extrapolated',
+        'm_adjusted':'My extrapolated change',
     })
 )
 HTML(diff.drop(labels=['error'], axis=1).round(2).to_html().replace('border="1"','border="0"'))
 
-# Now I can look at how far off I was.
+# Now I can look at how far off I was (mine - his).
 
-# In[21]:
+# In[23]:
 
 
-HTML(diff[['Type', 'error']].round(2).to_html().replace('border="1"','border="0"'))
-
-# ## Final Notes
-# 
-# - 2 / 3 statistics were pretty close, something weird happens with pork tho, 90% error
-# - Maybe I deflated prices using a different CPI than the author
+HTML(
+    diff[['Type', 'error']]
+    .round(2).to_html()
+    .replace('border="1"','border="0"')
+)

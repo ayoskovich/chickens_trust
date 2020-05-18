@@ -31,6 +31,8 @@ Here's what I found:
 - From 1998 - 2020, the price of pork has declined 26%.
 - From 1984 - 2020, the price of beef has increased 25.3%.
 
+But it wouldn't be fair to compare these numbers to his numbers, because my data has a different number of years. I'll very simply extrapolate backwards using the growth rate I have from my data.
+
 
 
 
@@ -43,7 +45,7 @@ Here's what I found:
       <th>His pct change</th>
       <th>My Years</th>
       <th>His years</th>
-      <th>Extrapolated</th>
+      <th>My extrapolated change</th>
     </tr>
   </thead>
   <tbody>
@@ -79,7 +81,7 @@ Here's what I found:
 
 
 
-Now I can look at how far off I was.
+Now I can look at how far off I was (mine - his).
 
 
 
@@ -112,8 +114,3 @@ Now I can look at how far off I was.
 </table>
 
 
-
-## Final Notes
-
-- 2 / 3 statistics were pretty close, something weird happens with pork tho, 90% error
-- Maybe I deflated prices using a different CPI than the author
