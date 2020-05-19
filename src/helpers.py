@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 
 # Importing one notebook into another isn't the best way to do this,
@@ -17,71 +17,60 @@ def get_adjust(past_cpi, current_cpi, past_price):
     return (current_cpi / past_cpi) * past_price
 
 
-def apply_adjust(df, col, base):
-    """ 
-    Convert dataframe column using CPI
+def get_prices():
     """
-    
-    return df.apply(
-                 lambda x: 
-                    get_adjust(
-                           past_cpi=x['cpi'],
-                           current_cpi=base,
-                           past_price=x[col]
-                    ),
-                 axis=1)
-
-
-def chicken():
-    """ Chicken, Fresh, Whole, Per Lb. (453.6 Gm) in U.S. City Average
-    (APU0000706111)
+    Read in and wrangle pricing data.
     """
-    df = pd.read_csv('data/APU0000706111.csv')
+    FILES = [
+        'data/file-2.csv', 
+        'data/file-3.csv', 
+        'data/file-4.csv'
+    ]
+    CODE_MAP = {
+        'CUUR0000SEFF':'Poultry',
+        'CUUR0000SEFD':'Pork',
+        'CUUR0000SEFC':'Beef'
+    }
+    df = (
+        pd.concat([pd.read_csv(x) for x in FILES])
+        .assign(Date = lambda x: pd.to_datetime(x['Label']))
+        .assign(Meat = lambda x: x['Series ID'].map(CODE_MAP))
+        .sort_values(by=['Label', 'Date'])
+        .merge(cpi, how='left', on='Date')
+    )
     
     return df
 
 
-def beef():
-    """ Ground Beef, 100% Beef, Per Lb. (453.6 Gm) in U.S. City Average 
-    (APU0000703112)
+def get_indices():
     """
-    df = pd.read_csv('data/APU0000703112.csv')
+    Read in the index data.
+    """
+    FILES = [
+        'data/APU0000703112.csv',
+        'data/APU0000706111.csv',
+        'data/APU0000FD3101.csv'
+    ]
+    CODE_MAP = {
+        'APU0000703112':'Beef',
+        'APU0000706111':'Chicken',
+        'APU0000FD3101':'Pork'
+    }
+
+    def read_in(path):
+        splt = lambda x: x.split('/')[1].split('.')[0]
+        fixed = splt(path)
+
+        return (
+            pd.read_csv(path)
+            .assign(Series = fixed)
+            .assign(Date = lambda x: pd.to_datetime(x['DATE']))
+            .rename(columns={fixed:'price'})
+            .assign(price = lambda x: pd.to_numeric(x.price, 
+                                                    errors='coerce'))
+            .assign(Meat = lambda x: x['Series'].map(CODE_MAP))
+        )
+
+    df = pd.concat([read_in(x) for x in FILES])
     
     return df
-
-
-def pork():
-    """ All Pork Chops, Per Lb. (453.6 Gm) in U.S. City Average 
-    (APU0000FD3101)
-    """
-    df = pd.read_csv('data/APU0000FD3101.csv')
-    
-    return df
-
-
-def get_diff(df, var, ret=False):
-    """
-    Calculate pct change in price from oldest date the newest
-    date.
-
-    df (pd.DataFrame): Input dataframe
-    var (string): Name of variable to compute change in.
-    ret (bool): If true, return the pct change
-                If false, prints out some nice stats and returns
-                    nothing.
-    """
-    
-    oldest = df.loc[~df[var].isna(), 'date'].min()
-    newest = df.loc[~df[var].isna(), 'date'].max()
-    
-    
-    old = df.loc[df.date == oldest, 'new_{}'.format(var)].values[0]
-    new = df.loc[df.date == newest, 'new_{}'.format(var)].values[0]
-    ch = (new - old) / old
-    
-    if ret: return ch
-    else:
-        print(var)
-        print('\tOldest: {}\n\tNewest: {}'.format(oldest, newest))
-        print('\t${} --> ${}'.format(round(old, 2), round(new, 2)))
-        print('\tpct change: {}'.format(round(ch, 3)))
