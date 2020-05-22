@@ -17,32 +17,22 @@ def get_adjust(past_cpi, current_cpi, past_price):
     return (current_cpi / past_cpi) * past_price
 
 
-def get_prices():
+def get_cpi():
     """
-    Read in and wrangle pricing data.
+    Read in the cpi data.
     """
-    FILES = [
-        'data/file-2.csv', 
-        'data/file-3.csv', 
-        'data/file-4.csv'
-    ]
-    CODE_MAP = {
-        'CUUR0000SEFF':'Poultry',
-        'CUUR0000SEFD':'Pork',
-        'CUUR0000SEFC':'Beef'
-    }
     df = (
-        pd.concat([pd.read_csv(x) for x in FILES])
-        .assign(Date = lambda x: pd.to_datetime(x['Label']))
-        .assign(Meat = lambda x: x['Series ID'].map(CODE_MAP))
-        .sort_values(by=['Label', 'Date'])
-        .merge(cpi, how='left', on='Date')
+        pd.read_csv('data/CPIAUCSL.csv')
+        .assign(date = lambda x: pd.to_datetime(x['DATE']))
+        .drop(labels=['DATE'], axis=1)
+        .rename(columns={'CPIAUCSL':'cpi'})
+        [['date', 'cpi']]
     )
     
     return df
 
 
-def get_indices():
+def get_prices():
     """
     Read in the index data.
     """
@@ -64,7 +54,8 @@ def get_indices():
         return (
             pd.read_csv(path)
             .assign(Series = fixed)
-            .assign(Date = lambda x: pd.to_datetime(x['DATE']))
+            .assign(date = lambda x: pd.to_datetime(x['DATE']))
+            .drop(labels=['DATE'], axis=1)
             .rename(columns={fixed:'price'})
             .assign(price = lambda x: pd.to_numeric(x.price, 
                                                     errors='coerce'))
@@ -74,3 +65,4 @@ def get_indices():
     df = pd.concat([read_in(x) for x in FILES])
     
     return df
+

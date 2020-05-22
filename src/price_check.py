@@ -5,17 +5,17 @@
 # 
 # In order to validate the claims from [this](https://www.bloomberg.com/news/articles/2020-05-11/why-chicken-is-plentiful-during-the-pandemic-and-beef-is-not?srnd=premium&utm_medium=social&utm_source=twitter&utm_campaign=socialflow-organic&utm_content=markets&cmpid%3D=socialflow-twitter-markets&sref=XQtHDW1P) article, I pulled price data from FRED (which sources data from the BLS) and adjusted it using the CPI. Data sources are here:
 # 
-# - Poultry 
-#     - [price](https://fred.stlouisfed.org/series/APU0000706111)
-#     - [index](https://beta.bls.gov/dataViewer/view/timeseries/CUUR0000SEFF)
-# - Pork
-#     - [price](https://fred.stlouisfed.org/series/APU0000FD3101)
-#     - [index](https://beta.bls.gov/dataViewer/view/timeseries/CUUR0000SEFD)
-# - Beef
-#     - [price](https://fred.stlouisfed.org/series/APU0000703112)
-#     - [index](https://beta.bls.gov/dataViewer/view/timeseries/CUUR0000SEFC)
+# - [Poultry](https://fred.stlouisfed.org/series/APU0000706111)
+# - [Pork](https://fred.stlouisfed.org/series/APU0000FD3101)
+# - [Beef](https://fred.stlouisfed.org/series/APU0000703112)
 
-# In[10]:
+# poultry -.62
+# pork -.12
+# beef +.63
+
+# The chart below shows how the average price of 3 different types of meats has changed over time. However, these are nominal dollars, not real dollars. To adjust for the change in purchasing power of a dollar, I'll use the CPI to adjust the prices.
+
+# In[7]:
 
 
 import pandas as pd
@@ -33,41 +33,24 @@ register_matplotlib_converters()
 %config InlineBackend.figure_format = 'retina'
 %run ./helpers.ipynb
 
-cpi = (
-    pd.read_csv('data/CPIAUCSL.csv')
-    .assign(Date = lambda x: pd.to_datetime(x['DATE']))
-    .rename(columns={'CPIAUCSL':'cpi'})
-    [['Date', 'cpi']]
-)
+cpi = get_cpi()
+pcs = get_prices()
 
-stacked = get_prices()
+sns.lineplot(x='date', y='price', hue='Meat', data=pcs);
+plt.ylabel('Price');
 
-sns.lineplot(x='Date', y='Value', hue='Meat', data=stacked);
-plt.ylabel('Index Value');
-
-# In[11]:
+# In[20]:
 
 
-yuh = get_indices()
-sns.lineplot(x='Date', y='price', hue='Meat', data=yuh);
+CURRENT_CPI = cpi.loc[cpi.date == cpi.date.max(), 'cpi'].values[0]
 
-# In[12]:
-
-
-yuh.query('Meat == "Pork"').dropna(subset=['price']).sort_values(by=['DATE'])
-
-# In[13]:
-
-
-# Find the nominal price at the base year of the index (1982 - 1984)ish for each Meat
 (
-    yuh.loc[yuh['Date'].apply(lambda x: x.year).isin([1983, 1984])]
-    .groupby('Meat')
-    .aggregate({'price':np.mean})
-)
-
-# Adjust 1935 prices
-# Compute pct difference
+    pcs.merge(cpi, how='left', on=['date'])
+    .assign(cur_price = lambda x: get_adjust(past_cpi=x.cpi,
+                                             current_cpi = CURRENT_CPI,
+                                             past_price = x.price))
+    .pipe(lambda x: sns.lineplot(x='date', y='cur_price', hue='Meat', data=x))
+);
 
 # In[ ]:
 
