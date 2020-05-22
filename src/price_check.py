@@ -15,7 +15,7 @@
 
 # The chart below shows how the average price of 3 different types of meats has changed over time. However, these are nominal dollars, not real dollars. To adjust for the change in purchasing power of a dollar, I'll use the CPI to adjust the prices.
 
-# In[7]:
+# In[30]:
 
 
 import pandas as pd
@@ -37,9 +37,10 @@ cpi = get_cpi()
 pcs = get_prices()
 
 sns.lineplot(x='date', y='price', hue='Meat', data=pcs);
+plt.title('Meat Prices Over Time (Nominal)')
 plt.ylabel('Price');
 
-# In[20]:
+# In[34]:
 
 
 CURRENT_CPI = cpi.loc[cpi.date == cpi.date.max(), 'cpi'].values[0]
@@ -51,6 +52,16 @@ CURRENT_CPI = cpi.loc[cpi.date == cpi.date.max(), 'cpi'].values[0]
                                              past_price = x.price))
     .pipe(lambda x: sns.lineplot(x='date', y='cur_price', hue='Meat', data=x))
 );
+plt.ylabel('Price')
+plt.title('Meat Prices Over Time (Real)');
+
+# A couple things to note here.
+# 
+# - Pork has certainly declined in real price
+# - Beef has increased in real price
+# - Chicken, while the nominal price has increased, the increase in dollar purchasing power outweighed that change, so chicken is less expensive than it was in the 80s.
+# 
+# I'll translate these results into % changes, simply by taking the pct change between the min and max dates.
 
 # In[ ]:
 

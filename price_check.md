@@ -15,3 +15,15 @@ The chart below shows how the average price of 3 different types of meats has ch
 
 ![png](price_check_files/price_check_3_0.png)
 
+
+
+![png](price_check_files/price_check_4_0.png)
+
+
+A couple things to note here.
+
+- Pork has certainly declined in real price
+- Beef has increased in real price
+- Chicken, while the nominal price has increased, the increase in dollar purchasing power outweighed that change, so chicken is less expensive than it was in the 80s.
+
+I'll translate these results into % changes, simply by taking the pct change between the min and max dates.
