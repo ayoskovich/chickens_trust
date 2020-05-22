@@ -61,7 +61,7 @@ def get_cpi():
 
 def get_prices():
     """
-    Read in the index data.
+    Read in the price data.
     """
     FILES = [
         'data/APU0000703112.csv',

@@ -66,7 +66,7 @@ plt.title('Meat Prices Over Time (Real)');
 # 
 # I'll translate these results into % changes, simply by taking the pct change between the min and max dates and keep track of the start / end dates.
 
-# In[12]:
+# In[14]:
 
 
 x = (
@@ -77,20 +77,57 @@ x = (
 ); 
 HTML(
     x
-    .to_html().replace('border="1"','border="0"')
+    .to_html(index=False)
+    .replace('border="1"','border="0"')
 )
 
 # The author of the article used different date ranges than I did, he found data that goes back to 1935, with is 85 years in total. I'll make a massive assumption that the price change has been consistent over each year, and I'll extrapolate backwards.
 
-# In[11]:
+# In[59]:
 
 
+fin = x.assign(Extrap = x.Change / x.NumYears * 85)
+fin['his'] = [.63, -.62, -.12]
 HTML(
-    x.assign(Extrap = x.Change / x.NumYears * 85)
-    .to_html().replace('border="1"','border="0"')
+    fin
+    .to_html(index=False)
+    .replace('border="1"','border="0"')
 )
 
-# In[4]:
+# Now that I've extrapolated the changes, let's compare the numbers I got to Fox's original numbers.
+
+# In[58]:
 
 
-#HTML(df.to_html().replace('border="1"','border="0"'))
+import numpy as np
+import matplotlib.pyplot as plt
+
+n_groups = 3
+
+fig, ax = plt.subplots()
+index = np.arange(n_groups)
+bar_width = 0.35
+opacity = 0.8
+
+rects1 = plt.bar(index, 
+                 fin['Extrap'], 
+                 bar_width,
+                 alpha=opacity,
+                 color='b',
+                 label='Mine')
+
+rects2 = plt.bar(index + bar_width,
+                 fin['his'], 
+                 bar_width,
+                 alpha=opacity,
+                 color='g',
+                 label='His')
+
+plt.hlines(y=0, xmin=-.25, xmax=2.6)
+plt.ylabel('Percentage Change')
+plt.title('Comparing')
+plt.xticks(index + bar_width / 2, ('Beef', 'Chicken', 'Pork'))
+plt.legend()
+
+plt.tight_layout()
+plt.show()
