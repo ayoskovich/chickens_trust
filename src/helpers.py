@@ -17,6 +17,33 @@ def get_adjust(past_cpi, current_cpi, past_price):
     return (current_cpi / past_cpi) * past_price
 
 
+def get_diff(df, var, date):
+    """
+    Calculate pct change in price from oldest date the newest
+    date.
+
+    df (pd.DataFrame): Input dataframe
+    var (string): Name of variable to compute change in.
+    date (string): Name of date variable
+    """
+    
+    oldest = df[date].min()
+    newest = df[date].max()
+    
+    old = df.loc[df.date == oldest, var].values[0]
+    new = df.loc[df.date == newest, var].values[0]
+    
+    chg = (new - old) / old
+    
+    df = pd.DataFrame({
+        'Change':[chg],
+        'Start':[oldest],
+        'End':[newest]
+    })
+    
+    return df
+
+
 def get_cpi():
     """
     Read in the cpi data.
