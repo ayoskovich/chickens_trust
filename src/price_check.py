@@ -58,45 +58,42 @@ adjust.pipe(lambda x:
 plt.ylabel('Price')
 plt.title('Meat Prices Over Time (Real)');
 
-# A couple things to note here.
+# A couple things to note here:
 # 
 # - Pork has certainly declined in real price
 # - Beef has increased in real price
 # - Chicken, while the nominal price has increased, the increase in dollar purchasing power outweighed that change, so chicken is less expensive than it was in the 80s.
 # 
-# I'll translate these results into % changes, simply by taking the pct change between the min and max dates and keep track of the start / end dates.
+# I'll translate these results into % changes, simply by taking the pct change between the min and max dates and keep track of the start / end dates. I'll also adjust for the differing number of years between me and the author.
 
-# In[14]:
+# In[3]:
 
+
+# Add his numbers
+his = {
+    'Beef':.63,
+    'Chicken':-.62,
+    'Pork':-.12
+}
 
 x = (
     adjust.groupby('Meat').apply(lambda x: get_diff(x, 'cur_price', 'date'))
     .reset_index()
     .drop(labels='level_1', axis=1)
     .assign(NumYears = lambda x: x['End'].dt.year - x['Start'].dt.year)
+    .assign(Extrap = lambda x: x.Change / x.NumYears * 85)
+    .assign(his = lambda x: x['Meat'].map(his))
 ); 
+
 HTML(
     x
     .to_html(index=False)
     .replace('border="1"','border="0"')
 )
 
-# The author of the article used different date ranges than I did, he found data that goes back to 1935, with is 85 years in total. I'll make a massive assumption that the price change has been consistent over each year, and I'll extrapolate backwards.
-
-# In[59]:
-
-
-fin = x.assign(Extrap = x.Change / x.NumYears * 85)
-fin['his'] = [.63, -.62, -.12]
-HTML(
-    fin
-    .to_html(index=False)
-    .replace('border="1"','border="0"')
-)
-
 # Now that I've extrapolated the changes, let's compare the numbers I got to Fox's original numbers.
 
-# In[58]:
+# In[4]:
 
 
 import numpy as np
@@ -110,14 +107,14 @@ bar_width = 0.35
 opacity = 0.8
 
 rects1 = plt.bar(index, 
-                 fin['Extrap'], 
+                 x['Extrap'], 
                  bar_width,
                  alpha=opacity,
                  color='b',
                  label='Mine')
 
 rects2 = plt.bar(index + bar_width,
-                 fin['his'], 
+                 x['his'], 
                  bar_width,
                  alpha=opacity,
                  color='g',
