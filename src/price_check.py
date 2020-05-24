@@ -11,7 +11,7 @@
 
 # The chart below shows how the average price of 3 different types of meats has changed over time.
 
-# In[5]:
+# In[1]:
 
 
 import pandas as pd
@@ -25,9 +25,9 @@ from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
 
 # https://github.com/jupyter/notebook/issues/3670
-%matplotlib inline
-%config InlineBackend.figure_format = 'retina'
-%run ./helpers.ipynb
+get_ipython().run_line_magic('matplotlib', 'inline')
+get_ipython().run_line_magic('config', "InlineBackend.figure_format = 'retina'")
+get_ipython().run_line_magic('run', './helpers.ipynb')
 
 cpi = get_cpi()
 pcs = get_prices()
@@ -35,6 +35,7 @@ pcs = get_prices()
 sns.lineplot(x='date', y='price', hue='Meat', data=pcs);
 plt.title('Meat Prices Over Time (Nominal)')
 plt.ylabel('Price');
+
 
 # To adjust for the change in purchasing power I'll use the CPI.
 
@@ -56,6 +57,7 @@ adjust.pipe(lambda x:
 plt.ylabel('Price')
 plt.title('Meat Prices Over Time (Real)');
 
+
 # In[3]:
 
 
@@ -73,6 +75,7 @@ x = (
     .assign(Extrap = lambda x: x.Change / x.NumYears * 85)
     .assign(his = lambda x: x['Meat'].map(his))
 )
+
 
 # A couple things to note about the real prices:
 # 
@@ -114,5 +117,6 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
+
 
 # I finally arrive at the above numbers. My estimates for beef and chicken are both very similar.
