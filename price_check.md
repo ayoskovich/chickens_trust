@@ -35,53 +35,141 @@ I'll translate these results into % changes, simply by taking the pct change bet
 
 
 
-<table border="0" class="dataframe">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
+      <th></th>
+      <th>price</th>
+      <th>Series</th>
+      <th>date</th>
       <th>Meat</th>
-      <th>Change</th>
-      <th>Start</th>
-      <th>End</th>
-      <th>NumYears</th>
-      <th>Extrap</th>
-      <th>his</th>
+      <th>cpi</th>
+      <th>cur_price</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Beef</td>
-      <td>0.253233</td>
+      <th>0</th>
+      <td>1.290</td>
+      <td>APU0000703112</td>
       <td>1984-01-01</td>
-      <td>2020-04-01</td>
-      <td>36</td>
-      <td>0.597911</td>
-      <td>0.63</td>
+      <td>Beef</td>
+      <td>102.100</td>
+      <td>3.233238</td>
     </tr>
     <tr>
-      <td>Chicken</td>
-      <td>-0.314954</td>
-      <td>1980-01-01</td>
-      <td>2020-04-01</td>
-      <td>40</td>
-      <td>-0.669277</td>
-      <td>-0.62</td>
+      <th>1</th>
+      <td>1.340</td>
+      <td>APU0000703112</td>
+      <td>1984-02-01</td>
+      <td>Beef</td>
+      <td>102.600</td>
+      <td>3.342190</td>
     </tr>
     <tr>
+      <th>2</th>
+      <td>1.308</td>
+      <td>APU0000703112</td>
+      <td>1984-03-01</td>
+      <td>Beef</td>
+      <td>102.900</td>
+      <td>3.252865</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.331</td>
+      <td>APU0000703112</td>
+      <td>1984-04-01</td>
+      <td>Beef</td>
+      <td>103.300</td>
+      <td>3.297246</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.301</td>
+      <td>APU0000703112</td>
+      <td>1984-05-01</td>
+      <td>Beef</td>
+      <td>103.500</td>
+      <td>3.216701</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1183</th>
+      <td>3.391</td>
+      <td>APU0000FD3101</td>
+      <td>2019-12-01</td>
       <td>Pork</td>
-      <td>-0.266726</td>
-      <td>1998-01-01</td>
+      <td>258.444</td>
+      <td>3.357647</td>
+    </tr>
+    <tr>
+      <th>1184</th>
+      <td>3.368</td>
+      <td>APU0000FD3101</td>
+      <td>2020-01-01</td>
+      <td>Pork</td>
+      <td>258.820</td>
+      <td>3.330028</td>
+    </tr>
+    <tr>
+      <th>1185</th>
+      <td>3.419</td>
+      <td>APU0000FD3101</td>
+      <td>2020-02-01</td>
+      <td>Pork</td>
+      <td>259.050</td>
+      <td>3.377452</td>
+    </tr>
+    <tr>
+      <th>1186</th>
+      <td>3.415</td>
+      <td>APU0000FD3101</td>
+      <td>2020-03-01</td>
+      <td>Pork</td>
+      <td>257.953</td>
+      <td>3.387847</td>
+    </tr>
+    <tr>
+      <th>1187</th>
+      <td>3.673</td>
+      <td>APU0000FD3101</td>
       <td>2020-04-01</td>
-      <td>22</td>
-      <td>-1.030534</td>
-      <td>-0.12</td>
+      <td>Pork</td>
+      <td>255.902</td>
+      <td>3.673000</td>
     </tr>
   </tbody>
 </table>
+<p>1188 rows × 6 columns</p>
+</div>
 
 
 
 Now that I've extrapolated the changes, let's compare the numbers I got to Fox's original numbers.
 
 
-![png](price_check_files/price_check_8_0.png)
+![png](price_check_files/price_check_9_0.png)
 

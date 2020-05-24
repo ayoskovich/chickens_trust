@@ -66,10 +66,14 @@ plt.title('Meat Prices Over Time (Real)');
 # 
 # I'll translate these results into % changes, simply by taking the pct change between the min and max dates and keep track of the start / end dates. I'll also adjust for the differing number of years between me and the author.
 
-# In[3]:
+# In[7]:
 
 
-# Add his numbers
+adjust
+
+# In[8]:
+
+
 his = {
     'Beef':.63,
     'Chicken':-.62,
@@ -83,17 +87,11 @@ x = (
     .assign(NumYears = lambda x: x['End'].dt.year - x['Start'].dt.year)
     .assign(Extrap = lambda x: x.Change / x.NumYears * 85)
     .assign(his = lambda x: x['Meat'].map(his))
-); 
-
-HTML(
-    x
-    .to_html(index=False)
-    .replace('border="1"','border="0"')
 )
 
 # Now that I've extrapolated the changes, let's compare the numbers I got to Fox's original numbers.
 
-# In[4]:
+# In[10]:
 
 
 import numpy as np
