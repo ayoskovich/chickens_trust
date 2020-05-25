@@ -126,4 +126,4 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-# I arrive at the above numbers, which had identical directions as the author.
+# I arrive at the above numbers, which had identical directions as the author. Click [here](https://anthonyyoskovich.com/project/trust-but-verify/) to see the longer form post.

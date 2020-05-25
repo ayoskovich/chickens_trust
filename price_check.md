@@ -30,4 +30,4 @@ In order to adjust for the different number of years of data between myself and 
 ![png](price_check_files/price_check_7_0.png)
 
 
-I arrive at the above numbers, which had identical directions as the author.
+I arrive at the above numbers, which had identical directions as the author. Click [here](https://anthonyyoskovich.com/project/trust-but-verify/) to see the longer form post.
