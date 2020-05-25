@@ -11,7 +11,7 @@
 
 # The chart below shows how the average price of 3 different types of meats has changed over time.
 
-# In[5]:
+# In[6]:
 
 
 import pandas as pd
@@ -38,7 +38,7 @@ plt.ylabel('Price');
 
 # To adjust for the change in purchasing power I'll use the CPI.
 
-# In[2]:
+# In[7]:
 
 
 CURRENT_CPI = cpi.loc[cpi.date == cpi.date.max(), 'cpi'].values[0]
@@ -56,7 +56,7 @@ adjust.pipe(lambda x:
 plt.ylabel('Price')
 plt.title('Meat Prices Over Time (Real)');
 
-# In[3]:
+# In[8]:
 
 
 his = {
@@ -91,9 +91,9 @@ adjust['Extrap'] = (adjust['cur_price'] - adjust['Extrap']) / adjust['Extrap']
 # - Beef has increased 25% from 1984
 # - Chicken has decreased 31.4% since 1980
 # 
-# In order to adjust for the different number of years between myself and the author, I'll convert the growth rate into a yearly one and extrapolate backwards. This requires the assumption that the growth rates between all the meats are constant.
+# In order to adjust for the different number of years of data between myself and the author, I'll compute the average price change per month and extrapolate backwards. This requires the assumption that the growth rates between all the meats are constant and is likely too simple.
 
-# In[4]:
+# In[12]:
 
 
 n_groups = 3
@@ -108,22 +108,22 @@ rects1 = plt.bar(index,
                  bar_width,
                  alpha=opacity,
                  color='b',
-                 label='Mine')
+                 label='My numbers')
 
 rects2 = plt.bar(index + bar_width,
                  adjust['his'], 
                  bar_width,
                  alpha=opacity,
                  color='g',
-                 label='His')
+                 label='His numbers')
 
 plt.hlines(y=0, xmin=-.25, xmax=2.6)
 plt.ylabel('Percentage Change')
-plt.title('Comparing')
+plt.title('Comparing Percentage Changes In Real Prices')
 plt.xticks(index + bar_width / 2, ('Beef', 'Chicken', 'Pork'))
 plt.legend()
 
 plt.tight_layout()
 plt.show()
 
-# I finally arrive at the above numbers. My estimates for beef and chicken are both very similar.
+# I arrive at the above numbers, which had identical directions as the author.

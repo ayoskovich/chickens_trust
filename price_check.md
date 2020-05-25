@@ -24,10 +24,10 @@ A couple things to note about the real prices:
 - Beef has increased 25% from 1984
 - Chicken has decreased 31.4% since 1980
 
-In order to adjust for the different number of years between myself and the author, I'll convert the growth rate into a yearly one and extrapolate backwards. This requires the assumption that the growth rates between all the meats are constant.
+In order to adjust for the different number of years of data between myself and the author, I'll compute the average price change per month and extrapolate backwards. This requires the assumption that the growth rates between all the meats are constant and is likely too simple.
 
 
 ![png](price_check_files/price_check_7_0.png)
 
 
-I finally arrive at the above numbers. My estimates for beef and chicken are both very similar.
+I arrive at the above numbers, which had identical directions as the author.
